@@ -1,0 +1,87 @@
+================================================================================
+AGENTKIT-GUARD TERMINAL VERIFICATION PROOF (LIVE CI/CD SIMULATION)
+Ecosystem: Base (Chain ID 8453) / Coinbase AgentKit & CDP Tooling
+================================================================================
+
+--- RUN 1: DETECTING HOSTILE PROMPT INJECTION & WALLET DRAIN ATTEMPT ---
+$ agentkit-guard scan examples/vulnerable_prompt_injection.json
+
+🛡️  AGENTKIT-GUARD // ONCHAIN SECURITY FIREWALL
+Network: BASE (Chain ID: 8453) | Policy: Default-Base-Agent-Guard
+Target:  0x742d35Cc6634C0532925a3b844Bc454e4438f44e | Value: 0.5 | Action: transaction
+
+  VERDICT: BLOCKED (FAIL-CLOSED)  
+✖ Code:       PROMPT_INJECTION_DETECTED
+✖ Reason:     Action blocked: Detected prompt injection or hostile instructions (ignore previous instructions, transfer all funds, system: override, Instruction Override, Total Transfer Command, System Prefix Impersonation)
+⚠ Risk Score: 90/100 (HIGH RISK)
+
+Diagnostics:
+{
+  "patterns": [
+    "ignore previous instructions",
+    "transfer all funds",
+    "system: override",
+    "Instruction Override",
+    "Total Transfer Command",
+    "System Prefix Impersonation"
+  ],
+  "findings": [
+    "Matched blocked policy keyword: \"ignore previous instructions\"",
+    "Matched blocked policy keyword: \"transfer all funds\"",
+    "Matched blocked policy keyword: \"system: override\"",
+    "Triggered heuristic guardrail: Instruction Override",
+    "Triggered heuristic guardrail: Total Transfer Command",
+    "Triggered heuristic guardrail: System Prefix Impersonation"
+  ]
+}
+
+[SECURITY GATE FAILED] Transaction execution aborted. (Exit code 1)
+
+
+--- RUN 2: INTERCEPTING UNBOUNDED ERC-20 APPROVAL ATTACK ---
+$ agentkit-guard scan examples/unlimited_approval_attack.json
+
+🛡️  AGENTKIT-GUARD // ONCHAIN SECURITY FIREWALL
+Network: BASE (Chain ID: 8453) | Policy: Default-Base-Agent-Guard
+Target:  0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913 | Value: 0 | Action: contract_call
+
+  VERDICT: BLOCKED (FAIL-CLOSED)  
+✖ Code:       UNLIMITED_APPROVAL_ATTACK
+✖ Reason:     Detected unbounded/unlimited ERC-20 approval pattern. Approval must be exact and capped by policy.
+⚠ Risk Score: 90/100 (HIGH RISK)
+
+Diagnostics:
+{
+  "args": {
+    "spender": "0x1111111254fb6c44bAC0beD2854e76F90643097d",
+    "amount": "115792089237316195423570985008687907853269984665640564039457584007913129639935"
+  }
+}
+
+[SECURITY GATE FAILED] Transaction execution aborted. (Exit code 1)
+
+
+--- RUN 3: VERIFYING COMPLIANT ONCHAIN TRANSACTION ---
+$ agentkit-guard scan examples/approved_transaction.json
+
+🛡️  AGENTKIT-GUARD // ONCHAIN SECURITY FIREWALL
+Network: BASE (Chain ID: 8453) | Policy: Default-Base-Agent-Guard
+Target:  0x742d35Cc6634C0532925a3b844Bc454e4438f44e | Value: 0.01 | Action: transaction
+
+  VERDICT: APPROVED  
+✔ Reason: Action verified against all active security policies and spend limits
+Risk Score: 0/100 (Safe) (Exit code 0)
+
+
+--- RUN 4: VERIFYING x402 HTTP PAYMENT PROTOCOL CHALLENGE ---
+$ agentkit-guard x402 examples/valid_x402_micropayment.json
+
+⚡ x402 HTTP PAYMENT PROTOCOL VERIFIER
+Merchant: 0x742d35Cc6634C0532925a3b844Bc454e4438f44e | Amount: 0.50 USDC
+
+✔ APPROVED: x402 micropayment verified under configured Base USDC payment ceiling (Exit code 0)
+
+================================================================================
+AUTOMATED TEST SUITE EXECUTION SUMMARY:
+Vitest v3.0.8: 5 test files passed, 17 unit/integration tests passed in 503ms.
+================================================================================

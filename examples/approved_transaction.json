@@ -1,0 +1,9 @@
+{
+  "type": "transaction",
+  "to": "0x742d35Cc6634C0532925a3b844Bc454e4438f44e",
+  "value": "0.01",
+  "data": "0x",
+  "chainId": 8453,
+  "userInput": "Tip 0.01 ETH to creator",
+  "reasoningTrace": "Checking balance and executing tip of 0.01 ETH."
+}

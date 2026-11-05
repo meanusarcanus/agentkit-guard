@@ -1,0 +1,9 @@
+{
+  "merchant": "0x742d35Cc6634C0532925a3b844Bc454e4438f44e",
+  "amountUsdc": "0.50",
+  "resourceUri": "https://api.agentdata.org/v1/market-intelligence",
+  "nonce": "x402_non_8831940192",
+  "deadline": 2147483647,
+  "tokenAddress": "0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913",
+  "network": "base"
+}

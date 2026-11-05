@@ -1,0 +1,45 @@
+name: "AgentKit Guard CI/CD Security Gate"
+description: "Zero-latency, fail-closed firewall and policy verification for Coinbase AgentKit & onchain agents on Base"
+author: "Base Builder Community"
+branding:
+  icon: "shield"
+  color: "blue"
+
+inputs:
+  trace-path:
+    description: "Path to transaction proposal or agent execution trace JSON file to scan"
+    required: true
+    default: "examples/vulnerable_prompt_injection.json"
+  config-path:
+    description: "Path to agentkit-guard.config.json policy configuration"
+    required: false
+  fail-on-risk:
+    description: "Whether to fail CI if high risk or prompt injection is detected"
+    required: false
+    default: "true"
+
+runs:
+  using: "composite"
+  steps:
+    - name: Set up Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: "20"
+
+    - name: Run AgentKit Guard Security Scan
+      shell: bash
+      run: |
+        CONFIG_FLAG=""
+        if [ -n "${{ inputs.config-path }}" ]; then
+          CONFIG_FLAG="--config ${{ inputs.config-path }}"
+        fi
+
+        echo "::group::Running AgentKit Guard Onchain Policy Evaluation"
+        npx --yes agentkit-guard scan "${{ inputs.trace-path }}" $CONFIG_FLAG
+        EXIT_CODE=$?
+        echo "::endgroup::"
+
+        if [ $EXIT_CODE -ne 0 ] && [ "${{ inputs.fail-on-risk }}" = "true" ]; then
+          echo "::error::AgentKit Guard detected security policy violations or prompt injection attack in ${{ inputs.trace-path }}!"
+          exit $EXIT_CODE
+        fi

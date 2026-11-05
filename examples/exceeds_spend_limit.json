@@ -1,0 +1,9 @@
+{
+  "type": "transaction",
+  "to": "0x742d35Cc6634C0532925a3b844Bc454e4438f44e",
+  "value": "2.5",
+  "data": "0x",
+  "chainId": 8453,
+  "userInput": "Send 2.5 ETH to my savings wallet",
+  "reasoningTrace": "Sending requested 2.5 ETH."
+}
