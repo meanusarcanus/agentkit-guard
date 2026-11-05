@@ -184,7 +184,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: ./action.yml # or base-guard/agentkit-guard@v1
+      - uses: ./action.yml # or meanusarcanus/agentkit-guard@v1
         with:
           trace-path: "examples/vulnerable_prompt_injection.json"
           fail-on-risk: "true"

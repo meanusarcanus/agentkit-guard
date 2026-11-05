@@ -8,7 +8,7 @@ Use this document as a ready-to-submit, copy-paste application for the **Base Ec
 
 - **Project Name:** AgentKit Guard (`agentkit-guard`)
 - **Tagline:** Zero-latency, fail-closed firewall, payment guardrails & x402 verification engine for Coinbase AgentKit & onchain AI agents on Base.
-- **Repository URL:** `https://github.com/base-guard/agentkit-guard`
+- **Repository URL:** `https://github.com/meanusarcanus/agentkit-guard`
 - **Package Registry:** `https://www.npmjs.com/package/agentkit-guard`
 - **Target Network:** Base Mainnet (Chain ID 8453) & Base Sepolia (Chain ID 84532)
 - **Grant Category:** Developer Tooling & Security Infrastructure / AI Agent Tooling
@@ -76,11 +76,11 @@ name: agentkit-guard
 display_name: AgentKit Guard
 description: Zero-latency, fail-closed firewall, payment guardrails & x402 verification engine for Coinbase AgentKit & onchain AI agents on Base.
 websites:
-  - url: https://github.com/base-guard/agentkit-guard
+  - url: https://github.com/meanusarcanus/agentkit-guard
 social:
   twitter: https://x.com/Base
 github:
-  - url: https://github.com/base-guard/agentkit-guard
+  - url: https://github.com/meanusarcanus/agentkit-guard
 npm:
   - url: https://www.npmjs.com/package/agentkit-guard
 blockchain:
