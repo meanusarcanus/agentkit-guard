@@ -1,6 +1,6 @@
 # 🛡️ AgentKit Guard
 
-[![Tests](https://img.shields.io/badge/tests-17%20passed-brightgreen.svg)]()
+[![CI / Security Suite](https://github.com/meanusarcanus/agentkit-guard/actions/workflows/ci.yml/badge.svg)](https://github.com/meanusarcanus/agentkit-guard/actions/workflows/ci.yml)
 [![Network](https://img.shields.io/badge/network-Base%20Mainnet%20%7C%20Base%20Sepolia-blue.svg)](https://base.org)
 [![MCP Protocol](https://img.shields.io/badge/MCP-1.0-purple.svg)](https://modelcontextprotocol.io)
 [![License](https://img.shields.io/badge/license-MIT-green.svg)]()
